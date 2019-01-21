@@ -10,10 +10,11 @@ def balanced_batch_generator(x, y, batch_size, categorical=True):
     Args:
     x (numpy.ndarray): Samples (inputs). Must have the same length as `y`.
     y (numpy.ndarray): Labels (targets). Must be a binary class matrix (i.e.,
-        shape `(num_samples, num_classes)`).
+        shape `(num_samples, num_classes)`). You can use `keras.utils.to_categorical`
+        to convert a class vector to a binary class matrix.
     batch_size (int): Batch size.
     categorical (bool, optional): If true, generates binary class matrices
-        (i.e., shape `(num_samples, num_classes)`) for  batch labels (targets).
+        (i.e., shape `(num_samples, num_classes)`) for batch labels (targets).
         Otherwise, generates class vectors (i.e., shape `(num_samples, )`).
         Defaults to `True`.
     Returns a generator yielding batches as tuples `(inputs, targets)` that can
@@ -24,7 +25,7 @@ def balanced_batch_generator(x, y, batch_size, categorical=True):
     if len(y.shape) != 2:
         raise ValueError(
             'Arg `y` must have a shape of (num_samples, num_classes). ' +
-            'You can use keras.utils.to_categorical to convert a class vector ' +
+            'You can use `keras.utils.to_categorical` to convert a class vector ' +
             'to a binary class matrix.'
         )
     if batch_size < 1:
