@@ -23,7 +23,7 @@ balanced_batch_generator(x, y, batch_size, categorical=True)
   (i.e., shape `(num_samples, num_classes)`) for batch labels (targets).
   Otherwise, generates class vectors (i.e., shape `(num_samples, )`).
   Defaults to `True`.
-- **`Returns`** a generator yielding batches as tuples `(inputs, targets)` that can
+- Returns a generator yielding batches as tuples `(inputs, targets)` that can
   be directly used with Keras.
 
 ## Basic Usage
