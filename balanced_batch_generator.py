@@ -1,7 +1,7 @@
 import random
 import numpy as np
 
-def balanced_batch(x, y, batch_size, categorical_binary=False):
+def balanced_batch_generator(x, y, batch_size, categorical_binary=False):
     """A generator for creating balanced batched.
 
     This generator loops over its data indefinitely and yields balanced,
