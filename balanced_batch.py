@@ -24,6 +24,8 @@ def balanced_batch(x, y, batch_size, categorical_binary=False):
             'Use keras.utils.to_categorical to convert a class vector ' +
             'to a binary class matrix.'
         )
+    if batch_size < 1:
+        raise ValueError('Arg `batch_size` must be a positive integer.')
     num_samples = y.shape[0]
     num_classes = y.shape[1]
     binary = num_classes == 2 and not categorical_binary
