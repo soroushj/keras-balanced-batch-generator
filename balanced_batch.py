@@ -2,11 +2,25 @@ import random
 import numpy as np
 
 def balanced_batch(x, y, batch_size, categorical_binary=False):
+    """A generator for creating balanced batched.
+
+    This generator loops over its data indefinitely and yields balanced,
+    shuffled batches.
+
+    Args:
+    x (numpy.ndarray): Samples (inputs). Must have the same length as `y`.
+    y (numpy.ndarray): Labels (targets). Must be a binary class matrix, i.e.,
+        must have a shape of `(num_samples, num_classes)`.
+    batch_size (int): Batch size.
+    categorical_binary (bool, optional): If set to `True` and `num_classes`
+        equals 2, will generate class vectors (with a shape of `(num_samples, )`)
+        instead of binary class matrices. Defaults to False.
+    """
     if x.shape[0] != y.shape[0]:
-        raise ValueError('Args `x` and `y` should have the same length.')
+        raise ValueError('Args `x` and `y` must have the same length.')
     if len(y.shape) != 2:
         raise ValueError(
-            'Arg `y` should have a shape of (num_samples, num_classes). ' +
+            'Arg `y` must have a shape of (num_samples, num_classes). ' +
             'Use keras.utils.to_categorical to convert a class vector ' +
             'to a binary class matrix.'
         )
