@@ -6,7 +6,7 @@ Generates *balanced batches*, i.e., batches in which the number of samples from
 each class is on average the same. Generated batches are also shuffled.
 
 Can be easily used with Keras models'
-[`fit_generator`](https://keras.io/models/sequential/#fit_generator).
+[`fit`](https://keras.io/api/models/model_training_apis/#fit-method).
 
 ## API
 
@@ -39,7 +39,7 @@ steps_per_epoch = ...
 model = Sequential(...)
 
 batch_generator = balanced_batch_generator(x, y, batch_size)
-model.fit_generator(batch_generator, steps_per_epoch=steps_per_epoch)
+model.fit(batch_generator, steps_per_epoch=steps_per_epoch)
 ```
 
 ## Example: Multiclass Classification
@@ -66,7 +66,7 @@ model = Sequential()
 model.add(Dense(32, input_shape=input_shape, activation='relu'))
 model.add(Dense(num_classes, activation='softmax'))
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-model.fit_generator(batch_generator, steps_per_epoch=10, epochs=5)
+model.fit(batch_generator, steps_per_epoch=10, epochs=5)
 ```
 
 ## Example: Binary Classification
@@ -93,5 +93,5 @@ model = Sequential()
 model.add(Dense(32, input_shape=input_shape, activation='relu'))
 model.add(Dense(1, activation='sigmoid'))
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
-model.fit_generator(batch_generator, steps_per_epoch=10, epochs=5)
+model.fit(batch_generator, steps_per_epoch=10, epochs=5)
 ```
