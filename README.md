@@ -8,22 +8,24 @@ each class is on average the same. Generated batches are also shuffled.
 Can be easily used with Keras models'
 [`fit`](https://keras.io/api/models/model_training_apis/#fit-method).
 
+Currently, only NumPy arrays for single-input, sing-output models are supported.
+
 ## API
 
 ```python
 balanced_batch_generator(x, y, batch_size, categorical=True)
 ```
 
-- **`x`** *(numpy.ndarray)* Samples (inputs). Must have the same length as `y`.
-- **`y`** *(numpy.ndarray)* Labels (targets). Must be a binary class matrix (i.e.,
+- **`x`** *(numpy.ndarray)* Input data. Must have the same length as `y`.
+- **`y`** *(numpy.ndarray)* Target data. Must be a binary class matrix (i.e.,
   shape `(num_samples, num_classes)`). You can use `keras.utils.to_categorical`
   to convert a class vector to a binary class matrix.
 - **`batch_size`** *(int)* Batch size.
 - **`categorical`** *(bool, optional)* If true, generates binary class matrices
-  (i.e., shape `(num_samples, num_classes)`) for batch labels (targets).
+  (i.e., shape `(num_samples, num_classes)`) for batch targets.
   Otherwise, generates class vectors (i.e., shape `(num_samples, )`).
   Defaults to `True`.
-- Returns a generator yielding batches as tuples `(inputs, targets)` that can
+- Returns a generator yielding batches as tuples `(x, y)` that can
   be directly used with Keras.
 
 ## Basic Usage
