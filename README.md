@@ -8,7 +8,7 @@ each class is on average the same. Generated batches are also shuffled.
 Can be easily used with Keras models'
 [`fit`](https://keras.io/api/models/model_training_apis/#fit-method).
 
-Currently, only NumPy arrays for single-input, sing-output models are supported.
+Currently, only NumPy arrays for single-input, single-output models are supported.
 
 ## API
 
