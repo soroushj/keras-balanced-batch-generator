@@ -1,10 +1,10 @@
 import random
 import numpy as np
 
-def balanced_batch_generator(x, y, batch_size,
-                             categorical=True,
-                             seed=None):
-    """A generator for creating balanced batches.
+def make_generator(x, y, batch_size,
+                   categorical=True,
+                   seed=None):
+    """A Keras-compatible generator for creating balanced batches.
 
     This generator loops over its data indefinitely and yields balanced,
     shuffled batches.
@@ -12,16 +12,15 @@ def balanced_batch_generator(x, y, batch_size,
     Args:
     x (numpy.ndarray): Input data. Must have the same length as `y`.
     y (numpy.ndarray): Target data. Must be a binary class matrix (i.e.,
-        shape `(num_samples, num_classes)`). You can use `keras.utils.to_categorical`
-        to convert a class vector to a binary class matrix.
+        shape `(num_samples, num_classes)`). You can use
+        `keras.utils.to_categorical` to convert a class vector to a binary
+        class matrix.
     batch_size (int): Batch size.
     categorical (bool, optional): If true, generates binary class matrices
         (i.e., shape `(num_samples, num_classes)`) for batch targets.
         Otherwise, generates class vectors (i.e., shape `(num_samples, )`).
-        Defaults to `True`.
     seed (int, optional): Random seed.
-    Returns a generator yielding batches as tuples `(x, y)` that can be
-        directly used with Keras.
+    Returns a Keras-compatible generator yielding batches as tuples `(x, y)`.
     """
     if x.shape[0] != y.shape[0]:
         raise ValueError('Args `x` and `y` must have the same length.')
