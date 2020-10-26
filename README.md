@@ -13,7 +13,9 @@ Currently, only NumPy arrays for single-input, single-output models are supporte
 ## API
 
 ```python
-balanced_batch_generator(x, y, batch_size, categorical=True)
+balanced_batch_generator(x, y, batch_size,
+                         categorical=True,
+                         seed=None)
 ```
 
 - **`x`** *(numpy.ndarray)* Input data. Must have the same length as `y`.
@@ -25,6 +27,7 @@ balanced_batch_generator(x, y, batch_size, categorical=True)
   (i.e., shape `(num_samples, num_classes)`) for batch targets.
   Otherwise, generates class vectors (i.e., shape `(num_samples, )`).
   Defaults to `True`.
+- **`seed`** *(int, optional)* Random seed (see the [docs](https://docs.python.org/3/library/random.html#random.seed)).
 - Returns a generator yielding batches as tuples `(x, y)` that can
   be directly used with Keras.
 

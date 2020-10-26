@@ -1,7 +1,9 @@
 import random
 import numpy as np
 
-def balanced_batch_generator(x, y, batch_size, categorical=True):
+def balanced_batch_generator(x, y, batch_size,
+                             categorical=True,
+                             seed=None):
     """A generator for creating balanced batches.
 
     This generator loops over its data indefinitely and yields balanced,
@@ -17,6 +19,7 @@ def balanced_batch_generator(x, y, batch_size, categorical=True):
         (i.e., shape `(num_samples, num_classes)`) for batch targets.
         Otherwise, generates class vectors (i.e., shape `(num_samples, )`).
         Defaults to `True`.
+    seed (int, optional): Random seed.
     Returns a generator yielding batches as tuples `(x, y)` that can be
         directly used with Keras.
     """
@@ -38,15 +41,16 @@ def balanced_batch_generator(x, y, batch_size, categorical=True):
     samples = [[] for _ in range(num_classes)]
     for i in range(num_samples):
         samples[np.argmax(y[i])].append(x[i])
+    rand = random.Random(seed)
     while True:
         batch_x = np.ndarray(shape=batch_x_shape, dtype=x.dtype)
         batch_y = np.zeros(shape=batch_y_shape, dtype=y.dtype)
         for i in range(batch_size):
-            random_class = random.randrange(num_classes)
+            random_class = rand.randrange(num_classes)
             current_index = indexes[random_class]
             indexes[random_class] = (current_index + 1) % len(samples[random_class])
             if current_index == 0:
-                random.shuffle(samples[random_class])
+                rand.shuffle(samples[random_class])
             batch_x[i] = samples[random_class][current_index]
             if categorical:
                 batch_y[i][random_class] = 1
