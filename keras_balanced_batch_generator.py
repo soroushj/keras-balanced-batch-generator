@@ -16,10 +16,10 @@ def make_generator(x, y, batch_size,
         `keras.utils.to_categorical` to convert a class vector to a binary
         class matrix.
     batch_size (int): Batch size.
-    categorical (bool, optional): If true, generates binary class matrices
+    categorical (bool): If true, generates binary class matrices
         (i.e., shape `(num_samples, num_classes)`) for batch targets.
         Otherwise, generates class vectors (i.e., shape `(num_samples,)`).
-    seed (int, optional): Random seed.
+    seed: Random seed.
     Returns a Keras-compatible generator yielding batches as `(x, y)` tuples.
     """
     if x.shape[0] != y.shape[0]:
