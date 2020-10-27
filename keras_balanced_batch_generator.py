@@ -20,7 +20,7 @@ def make_generator(x, y, batch_size,
         (i.e., shape `(num_samples, num_classes)`) for batch targets.
         Otherwise, generates class vectors (i.e., shape `(num_samples, )`).
     seed (int, optional): Random seed.
-    Returns a Keras-compatible generator yielding batches as tuples `(x, y)`.
+    Returns a Keras-compatible generator yielding batches as `(x, y)` tuples.
     """
     if x.shape[0] != y.shape[0]:
         raise ValueError('Args `x` and `y` must have the same length.')
