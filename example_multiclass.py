@@ -7,7 +7,7 @@ from keras_balanced_batch_generator import make_generator
 def example_multiclass():
     num_samples = 100
     num_classes = 3
-    input_shape = (2, )
+    input_shape = (2,)
     batch_size = 16
 
     x = np.random.rand(num_samples, *input_shape)

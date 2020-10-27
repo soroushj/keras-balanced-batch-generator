@@ -18,7 +18,7 @@ def make_generator(x, y, batch_size,
     batch_size (int): Batch size.
     categorical (bool, optional): If true, generates binary class matrices
         (i.e., shape `(num_samples, num_classes)`) for batch targets.
-        Otherwise, generates class vectors (i.e., shape `(num_samples, )`).
+        Otherwise, generates class vectors (i.e., shape `(num_samples,)`).
     seed (int, optional): Random seed.
     Returns a Keras-compatible generator yielding batches as `(x, y)` tuples.
     """
@@ -35,7 +35,7 @@ def make_generator(x, y, batch_size,
     num_samples = y.shape[0]
     num_classes = y.shape[1]
     batch_x_shape = (batch_size, *x.shape[1:])
-    batch_y_shape = (batch_size, num_classes) if categorical else (batch_size, )
+    batch_y_shape = (batch_size, num_classes) if categorical else (batch_size,)
     indexes = [0 for _ in range(num_classes)]
     samples = [[] for _ in range(num_classes)]
     for i in range(num_samples):
