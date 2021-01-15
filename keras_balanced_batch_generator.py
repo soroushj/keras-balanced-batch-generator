@@ -42,6 +42,9 @@ def make_generator(x, y, batch_size,
     samples = [[] for _ in range(num_classes)]
     for i in range(num_samples):
         samples[np.argmax(y[i])].append(x[i])
+    for c, s in enumerate(samples):
+        if len(s) < 1:
+            raise ValueError('Class {} has no samples.'.format(c))
     rand = random.Random(seed)
     while True:
         batch_x = np.ndarray(shape=batch_x_shape, dtype=x.dtype)
