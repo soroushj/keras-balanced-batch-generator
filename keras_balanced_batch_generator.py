@@ -26,7 +26,7 @@ def make_generator(x, y, batch_size,
         raise ValueError('Args `x` and `y` must have the same length.')
     if x.shape[0] < 1:
         raise ValueError('Args `x` and `y` must not be empty.')
-    if len(y.shape) != 2:
+    if len(np.squeeze(y).shape) != 2:
         raise ValueError(
             'Arg `y` must have a shape of (num_samples, num_classes). ' +
             'You can use `keras.utils.to_categorical` to convert a class vector ' +
