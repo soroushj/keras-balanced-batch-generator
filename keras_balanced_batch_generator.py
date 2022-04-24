@@ -22,6 +22,10 @@ def make_generator(x, y, batch_size,
     seed: Random seed.
     Returns a Keras-compatible generator yielding batches as `(x, y)` tuples.
     """
+    if type(x) is not np.ndarray:
+        raise ValueError('Arg x must be of type numpy.ndarray.')
+    if type(y) is not np.ndarray:
+        raise ValueError('Arg y must be of type numpy.ndarray.')
     if x.shape[0] != y.shape[0]:
         raise ValueError('Args x and y must have the same length.')
     if x.shape[0] < 1:
