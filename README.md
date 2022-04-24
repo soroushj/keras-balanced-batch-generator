@@ -16,9 +16,9 @@ It generates *balanced batches*, i.e., batches in which the number of samples fr
 Generated batches are also shuffled.
 
 The generator can be easily used with Keras models'
-[`fit`](https://keras.io/api/models/model_training_apis/#fit-method) method.
+[`fit`](https://www.tensorflow.org/api_docs/python/tf/keras/Model#fit) method.
 
-Currently, only NumPy arrays for single-input, single-output models are supported.
+Currently, only [NumPy arrays](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html) for single-input, single-output models are supported.
 
 ## API
 
