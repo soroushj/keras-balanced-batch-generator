@@ -32,8 +32,10 @@ def make_generator(x, y, batch_size,
             'You can use tf.keras.utils.to_categorical to convert a class vector ' +
             'to a binary class matrix.'
         )
+    if type(batch_size) is not int:
+        raise ValueError('Arg batch_size must be of type int.')
     if batch_size < 1:
-        raise ValueError('Arg batch_size must be a positive integer.')
+        raise ValueError('Arg batch_size must be positive.')
     num_samples = y.shape[0]
     num_classes = y.shape[1]
     batch_x_shape = (batch_size, *x.shape[1:])
