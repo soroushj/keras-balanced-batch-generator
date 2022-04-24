@@ -13,7 +13,7 @@ def make_generator(x, y, batch_size,
     x (numpy.ndarray): Input data. Must have the same length as `y`.
     y (numpy.ndarray): Target data. Must be a binary class matrix (i.e.,
         shape `(num_samples, num_classes)`). You can use
-        `keras.utils.to_categorical` to convert a class vector to a binary
+        `tf.keras.utils.to_categorical` to convert a class vector to a binary
         class matrix.
     batch_size (int): Batch size.
     categorical (bool): If true, generates binary class matrices
