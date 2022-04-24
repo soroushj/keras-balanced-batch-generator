@@ -23,17 +23,17 @@ def make_generator(x, y, batch_size,
     Returns a Keras-compatible generator yielding batches as `(x, y)` tuples.
     """
     if x.shape[0] != y.shape[0]:
-        raise ValueError('Args `x` and `y` must have the same length.')
+        raise ValueError('Args x and y must have the same length.')
     if x.shape[0] < 1:
-        raise ValueError('Args `x` and `y` must not be empty.')
+        raise ValueError('Args x and y must not be empty.')
     if len(y.shape) != 2:
         raise ValueError(
-            'Arg `y` must have a shape of (num_samples, num_classes). ' +
-            'You can use `keras.utils.to_categorical` to convert a class vector ' +
+            'Arg y must have a shape of (num_samples, num_classes). ' +
+            'You can use tf.keras.utils.to_categorical to convert a class vector ' +
             'to a binary class matrix.'
         )
     if batch_size < 1:
-        raise ValueError('Arg `batch_size` must be a positive integer.')
+        raise ValueError('Arg batch_size must be a positive integer.')
     num_samples = y.shape[0]
     num_classes = y.shape[1]
     batch_x_shape = (batch_size, *x.shape[1:])
