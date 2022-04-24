@@ -5,7 +5,7 @@ with open('README.md', 'r') as f:
 
 setuptools.setup(
     name='keras-balanced-batch-generator',
-    version='0.0.1',
+    version='0.0.2',
     url='https://github.com/soroushj/keras-balanced-batch-generator',
     author='Soroush Javadi',
     author_email='soroush.javadi@gmail.com',
