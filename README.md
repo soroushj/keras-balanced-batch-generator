@@ -30,7 +30,7 @@ make_generator(x, y, batch_size,
 
 - **`x`** *(numpy.ndarray)* Input data. Must have the same length as `y`.
 - **`y`** *(numpy.ndarray)* Target data. Must be a binary class matrix (i.e., shape `(num_samples, num_classes)`).
-  You can use [`tf.keras.utils.to_categorical`](https://www.tensorflow.org/api_docs/python/tf/keras/utils/to_categorical) to convert a class vector to a binary class matrix.
+  You can use [`keras.utils.to_categorical`](https://www.tensorflow.org/api_docs/python/tf/keras/utils/to_categorical) to convert a class vector to a binary class matrix.
 - **`batch_size`** *(int)* Batch size.
 - **`categorical`** *(bool)* If true, generates binary class matrices (i.e., shape `(num_samples, num_classes)`) for batch targets.
   Otherwise, generates class vectors (i.e., shape `(num_samples,)`).
@@ -40,14 +40,14 @@ make_generator(x, y, batch_size,
 ## Usage
 
 ```python
-import tensorflow as tf
+import keras
 from keras_balanced_batch_generator import make_generator
 
 x = ...
 y = ...
 batch_size = ...
 steps_per_epoch = ...
-model = tf.keras.models.Sequential(...)
+model = keras.models.Sequential(...)
 
 generator = make_generator(x, y, batch_size)
 model.fit(generator, steps_per_epoch=steps_per_epoch)
@@ -57,7 +57,7 @@ model.fit(generator, steps_per_epoch=steps_per_epoch)
 
 ```python
 import numpy as np
-import tensorflow as tf
+import keras
 from keras_balanced_batch_generator import make_generator
 
 num_samples = 100
@@ -67,13 +67,13 @@ batch_size = 16
 
 x = np.random.rand(num_samples, *input_shape)
 y = np.random.randint(low=0, high=num_classes, size=num_samples)
-y = tf.keras.utils.to_categorical(y)
+y = keras.utils.to_categorical(y)
 
 generator = make_generator(x, y, batch_size)
 
-model = tf.keras.models.Sequential()
-model.add(tf.keras.layers.Dense(32, input_shape=input_shape, activation='relu'))
-model.add(tf.keras.layers.Dense(num_classes, activation='softmax'))
+model = keras.models.Sequential()
+model.add(keras.layers.Dense(32, input_shape=input_shape, activation='relu'))
+model.add(keras.layers.Dense(num_classes, activation='softmax'))
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 model.fit(generator, steps_per_epoch=10, epochs=5)
 ```
@@ -82,7 +82,7 @@ model.fit(generator, steps_per_epoch=10, epochs=5)
 
 ```python
 import numpy as np
-import tensorflow as tf
+import keras
 from keras_balanced_batch_generator import make_generator
 
 num_samples = 100
@@ -92,13 +92,13 @@ batch_size = 16
 
 x = np.random.rand(num_samples, *input_shape)
 y = np.random.randint(low=0, high=num_classes, size=num_samples)
-y = tf.keras.utils.to_categorical(y)
+y = keras.utils.to_categorical(y)
 
 generator = make_generator(x, y, batch_size, categorical=False)
 
-model = tf.keras.models.Sequential()
-model.add(tf.keras.layers.Dense(32, input_shape=input_shape, activation='relu'))
-model.add(tf.keras.layers.Dense(1, activation='sigmoid'))
-model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+model = keras.models.Sequential()
+model.add(keras.layers.Dense(32, input_shape=input_shape, activation='relu'))
+model.add(keras.layers.Dense(1, activation='sigmoid'))
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['binary_accuracy'])
 model.fit(generator, steps_per_epoch=10, epochs=5)
 ```
